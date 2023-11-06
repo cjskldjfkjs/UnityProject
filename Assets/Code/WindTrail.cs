@@ -19,9 +19,9 @@ public class WindTrail : MonoBehaviour
         if(rigidbody.velocity.z >=200 || rigidbody.velocity.y >= 200)
         { 
             Trail1.startLifetime = 10f;
-            Trail2.startLifetime = 10f;
-            Trail3.startLifetime = 10f;
-            Trail.time = 5f;
+            Trail2.startLifetime = 10;
+            Trail3.startLifetime = 10;
+            Trail.time = 3f;
         }
     }
 }

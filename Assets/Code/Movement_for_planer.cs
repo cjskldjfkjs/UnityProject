@@ -8,6 +8,7 @@ public class Movement_for_planer : MonoBehaviour
     public float mouseX, mouseY;
     public Transform LeftPoint, CentrePoint, RightPoint;
     private Rigidbody rigidbody;
+    public bool isWindFlow;
     void Start()
     {
         startforceZ = forceZ;
@@ -32,9 +33,13 @@ public class Movement_for_planer : MonoBehaviour
             forceY = startforceY;
             forceZ = startforceZ;
         }
-        if(rigidbody.velocity.z>=300f || rigidbody.velocity.y>=300f)
+        if(rigidbody.velocity.z>=300f)
         { 
-            rigidbody.velocity = new Vector3(0f, 250f, 250f); 
+            rigidbody.velocity = new Vector3(0f, rigidbody.velocity.y, 250f); 
+        }
+        else if(rigidbody.velocity.y >= 300f)
+        {
+            rigidbody.velocity = new Vector3(0f, 250f, rigidbody.velocity.z);
         }
     }
     private void Update()
@@ -45,7 +50,7 @@ public class Movement_for_planer : MonoBehaviour
 
     private void MovmentByKeyboard()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && !isWindFlow)
         {
             gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, new Vector3(
                 LeftPoint.position.x, transform.position.y, transform.position.z), 30 * Time.deltaTime);
@@ -54,7 +59,7 @@ public class Movement_for_planer : MonoBehaviour
             //gameObject.transform.Rotate(new Vector3(0, -3, 0));
             //MoveLeft++;
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) && !isWindFlow)
         {
             gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, new Vector3(
                 RightPoint.position.x, transform.position.y, transform.position.z), 30 * Time.deltaTime);
@@ -73,13 +78,13 @@ public class Movement_for_planer : MonoBehaviour
     
     }
     private void RotationByKeyboard()
-    {   if(Input.GetKeyDown(KeyCode.S) && accumulativeForce == 1)
+    {   if(Input.GetKeyDown(KeyCode.S) && accumulativeForce == 1 && !isWindFlow)
         { 
             rigidbody.AddForce(transform.forward * 600, ForceMode.Impulse);
             rigidbody.AddForce(transform.up * 400, ForceMode.Impulse);
             accumulativeForce =0.5f;
         }
-        if(Input.GetKey(KeyCode.S))
+        if(Input.GetKey(KeyCode.S) && !isWindFlow)
         { 
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, 
                 Quaternion.Euler(gameObject.transform.rotation.x-20, 0, 0), 20 * Time.deltaTime);
@@ -93,7 +98,7 @@ public class Movement_for_planer : MonoBehaviour
             }
                 
         }
-        else if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.W) && !isWindFlow)
         {
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
                 Quaternion.Euler(gameObject.transform.rotation.x + 20, 0, 0), 20 * Time.deltaTime);
@@ -125,10 +130,20 @@ public class Movement_for_planer : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Wind"))
         { 
-            rigidbody.AddForce(transform.forward * 1000, ForceMode.Force);
+            isWindFlow = true;
+            rigidbody.AddForce(transform.forward * 100, ForceMode.Force);
+            rigidbody.AddForce(transform.up * 70, ForceMode.Force);
+            rigidbody.AddForce(-transform.up * 50, ForceMode.Force);
             rigidbody.useGravity = false;
+            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
+                Quaternion.Euler(0, 0, 0), 20 * Time.deltaTime);
         }
         rigidbody.useGravity = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Wind"))
+            isWindFlow = false;
     }
     private void RotationByMouse()
     {
