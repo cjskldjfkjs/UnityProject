@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MapSpawner : MonoBehaviour
 {
-    public GameObject plane_1;
+    public GameObject plane_1, plane0;
+    public int count = 1;
     void Start()
     {
         
@@ -12,8 +13,9 @@ public class MapSpawner : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Plane with wind"))
-        { 
-            Instantiate(plane_1, plane_1.transform.position + new Vector3(0, 0, plane_1.transform.localScale.z/2), Quaternion.identity);
+        {
+            Instantiate(plane_1, plane0.transform.position + new Vector3(0, 0, 3259f*count), Quaternion.identity);
+            count++;
         }
     }
 
