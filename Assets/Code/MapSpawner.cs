@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class MapSpawner : MonoBehaviour
 {
-    public GameObject plane_1, plane0;
+    public GameObject wind_plane, normal_plane,plane0;
     public int count = 1;
+    public int randomaizer;
+    public GameObject[] planes;
     void Start()
     {
         
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Plane with wind"))
+        if(other.gameObject.CompareTag("Plane"))
         {
-            Instantiate(plane_1, plane0.transform.position + new Vector3(0, 0, 3259f*count), Quaternion.identity);
+            randomaizer = Random.Range(0, 2);
+            Instantiate(planes[randomaizer], plane0.transform.position + new Vector3(0, 0, 3259f*count), Quaternion.identity);
             count++;
         }
     }

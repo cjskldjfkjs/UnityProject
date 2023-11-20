@@ -140,10 +140,16 @@ public class Movement_for_planer : MonoBehaviour
         }
         rigidbody.useGravity = true;
     }
+  
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Wind"))
             isWindFlow = false;
+        if (other.gameObject.CompareTag("Wind") && (rigidbody.velocity.z > 250 || rigidbody.velocity.y > 250))
+        {
+            rigidbody.velocity = new Vector3(0f, rigidbody.velocity.y, 100f);
+            //rigidbody.velocity = new Vector3(0f, 100f, rigidbody.velocity.z);
+        }
     }
     private void RotationByMouse()
     {
