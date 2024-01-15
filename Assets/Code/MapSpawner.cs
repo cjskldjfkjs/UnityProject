@@ -16,7 +16,7 @@ public class MapSpawner : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Plane"))
         {
-            randomaizer = Random.Range(0, 2);
+            randomaizer = Random.Range(0, 3);
             Instantiate(planes[randomaizer], plane0.transform.position + new Vector3(0, 0, 3259f*count), Quaternion.identity);
             count++;
         }
