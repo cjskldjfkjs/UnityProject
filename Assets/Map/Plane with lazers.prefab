@@ -38,6 +38,7 @@ Transform:
   - {fileID: 8681175174955025100}
   - {fileID: 534659890879765878}
   - {fileID: 6100951361655579018}
+  - {fileID: 3486001000301157851}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -148,6 +149,9 @@ MonoBehaviour:
   - {fileID: 4763935498725721765}
   randomaizer: 0
   LazerBeam: {fileID: 2385003611321697371}
+  HitBox: {fileID: 6276725801886020437}
+  RandomLazerPoint: {fileID: 0}
+  RandomLazerUpPoint: {fileID: 0}
   CenterlazerspawnPoint: {fileID: 969928664687727697}
   RightlazerspawnPoint: {fileID: 4115722733911656227}
   LeftlazerspawnPoint: {fileID: 4763935498725721765}
@@ -392,6 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6100951361655579018}
   - component: {fileID: 574842641144276142}
+  - component: {fileID: 614864602462025297}
   m_Layer: 0
   m_Name: Lazer
   m_TagString: Untagged
@@ -407,7 +412,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2385003611321697371}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.38145524, y: 8.09, z: 0.013118252}
+  m_LocalPosition: {x: -0.38145524, y: 0, z: 0.013118252}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.0030674846}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -531,6 +536,19 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &614864602462025297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385003611321697371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bb597220230ec45bb6456727b0ccb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LazerSpawner: {fileID: 5522938138375695974}
 --- !u!1 &3029859754105515131
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +1017,51 @@ Transform:
   m_Father: {fileID: 8156497832066170871}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6276725801886020437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3486001000301157851}
+  - component: {fileID: 6684128943273761939}
+  m_Layer: 0
+  m_Name: Hitbox
+  m_TagString: Lazer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3486001000301157851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6276725801886020437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8156497832066170871}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6684128943273761939
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6276725801886020437}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 32.385784, z: 0.039138127}
+  m_Center: {x: 0, y: 16.13555, z: -0.00010728397}
 --- !u!1 &6438743143960245834
 GameObject:
   m_ObjectHideFlags: 0

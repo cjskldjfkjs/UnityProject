@@ -6,7 +6,7 @@ public class LazerSpawner : MonoBehaviour
 {
     public GameObject[] Lazer;
     public int randomaizer;
-    public GameObject LazerBeam;
+    public GameObject LazerBeam, HitBox;
     public GameObject RandomLazerPoint, RandomLazerUpPoint;
     [Header("lOWER")]
     [SerializeField] private GameObject CenterlazerspawnPoint, RightlazerspawnPoint, LeftlazerspawnPoint, LowerLevel;
@@ -21,6 +21,7 @@ public class LazerSpawner : MonoBehaviour
         RandomLazerUpPoint = Instantiate(Lazer[randomaizer], new Vector3(Lazer[randomaizer].transform.position.x, UpperLevel.transform.position.y, RandomLazerPoint.transform.position.z), Quaternion.identity);
         RandomLazerUpPoint.transform.SetParent(UpperLevel.transform);
         LazerBeam.transform.position = new Vector3(RandomLazerPoint.transform.position.x, RandomLazerPoint.transform.position.y, RandomLazerPoint.transform.position.z);
+        HitBox.transform.position = new Vector3(RandomLazerPoint.transform.position.x, RandomLazerPoint.transform.position.y, RandomLazerPoint.transform.position.z);
     }
 
     // Update is called once per frame

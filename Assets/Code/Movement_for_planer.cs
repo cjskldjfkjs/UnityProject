@@ -128,7 +128,9 @@ public class Movement_for_planer : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.CompareTag("Wind"))
+        if(other.gameObject.CompareTag("Lazer"))
+            Destroy(gameObject);
+        if (other.gameObject.CompareTag("Wind"))
         { 
             isWindFlow = true;
             rigidbody.AddForce(transform.forward * 100, ForceMode.Force);
