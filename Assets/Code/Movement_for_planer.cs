@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement_for_planer : MonoBehaviour
 {
     public float forceZ, forceY, startforceZ, startforceY, accumulativeForce;
     public float mouseX, mouseY;
+    public float boost;
     public Transform LeftPoint, CentrePoint, RightPoint;
     private Rigidbody rigidbody;
-    public bool isWindFlow;
+    public bool isWindFlow, isDelay;
+    public Image Boost_Image;
     void Start()
     {
         startforceZ = forceZ;
@@ -21,19 +24,26 @@ public class Movement_for_planer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Boost_Image.fillAmount = boost;
         rigidbody.AddForce(transform.up * forceY);
         rigidbody.AddForce(transform.forward * forceZ);
-        if(Input.GetKey(KeyCode.LeftShift))
+        if(Input.GetKey(KeyCode.LeftShift) && boost>0f && !isDelay)
         { 
             forceZ+=0.5f;
             forceY+=0.5f;
+            boost-=0.013f;
         }
-        else
+        else if(boost<1f /*&& !Input.GetKey(KeyCode.LeftShift)*/ && isDelay)
         { 
             forceY = startforceY;
             forceZ = startforceZ;
+            boost+=0.005f;
         }
-        if(rigidbody.velocity.z>=300f)
+        if(boost <= 0)
+            isDelay = true;
+        else if (boost >= 1)
+            isDelay = false;
+        if (rigidbody.velocity.z>=300f)
         { 
             rigidbody.velocity = new Vector3(0f, rigidbody.velocity.y, 250f); 
         }
