@@ -8,6 +8,7 @@ public class Movement_for_planer : MonoBehaviour
     public float forceZ, forceY, startforceZ, startforceY, accumulativeForce;
     public float mouseX, mouseY;
     public float boost;
+    public GameObject Rotational_point;
     public Transform LeftPoint, CentrePoint, RightPoint;
     private Rigidbody rigidbody;
     public bool isWindFlow, isDelay;
@@ -51,6 +52,9 @@ public class Movement_for_planer : MonoBehaviour
         {
             rigidbody.velocity = new Vector3(0f, 250f, rigidbody.velocity.z);
         }
+
+        Rotational_point.transform.rotation = Quaternion.Euler(Rotational_point.transform.rotation.x, 
+            Rotational_point.transform.rotation.y, rigidbody.velocity.z/-5 + Rotational_point.transform.rotation.x);
     }
     private void Update()
     {

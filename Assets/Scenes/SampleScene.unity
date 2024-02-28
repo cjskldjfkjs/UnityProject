@@ -24938,10 +24938,10 @@ MonoBehaviour:
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 2
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 3
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &760507495
@@ -129844,6 +129844,10 @@ PrefabInstance:
       propertyPath: CentrePoint
       value: 
       objectReference: {fileID: 1180399940}
+    - target: {fileID: 7914942018235678306, guid: 7b1f9edb62b93504fa016faf99971c4b, type: 3}
+      propertyPath: Rotational_point
+      value: 
+      objectReference: {fileID: 1718388460}
     - target: {fileID: 7914942018235678311, guid: 7b1f9edb62b93504fa016faf99971c4b, type: 3}
       propertyPath: m_Size.x
       value: 24.69526

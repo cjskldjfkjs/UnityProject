@@ -18,8 +18,10 @@ public class LazerSpawner : MonoBehaviour
         RandomLazerPoint = Instantiate(Lazer[randomaizer], new Vector3(0, 0, 0), Quaternion.identity);
         RandomLazerPoint.transform.SetParent(LowerLevel.transform);
         RandomLazerPoint.transform.position = new Vector3(Lazer[randomaizer].transform.position.x, LowerLevel.transform.position.y, LowerLevel.transform.position.z+Random.Range(-1000f, 1000f));
-        RandomLazerUpPoint = Instantiate(Lazer[randomaizer], new Vector3(Lazer[randomaizer].transform.position.x, UpperLevel.transform.position.y, RandomLazerPoint.transform.position.z), Quaternion.identity);
+        RandomLazerPoint.SetActive(true);
+        RandomLazerUpPoint = Instantiate(Lazer[randomaizer], new Vector3(Lazer[randomaizer].transform.position.x, UpperLevel.transform.position.y, RandomLazerPoint.transform.position.z), Quaternion.Euler(0, 0, 180f));
         RandomLazerUpPoint.transform.SetParent(UpperLevel.transform);
+        RandomLazerUpPoint.SetActive(true);
         LazerBeam.transform.position = new Vector3(RandomLazerPoint.transform.position.x, RandomLazerPoint.transform.position.y, RandomLazerPoint.transform.position.z);
         HitBox.transform.position = new Vector3(RandomLazerPoint.transform.position.x, RandomLazerPoint.transform.position.y, RandomLazerPoint.transform.position.z);
     }
