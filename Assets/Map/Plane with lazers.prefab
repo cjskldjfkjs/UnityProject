@@ -38,6 +38,7 @@ Transform:
   - {fileID: 8681175174955025100}
   - {fileID: 534659890879765878}
   - {fileID: 6100951361655579018}
+  - {fileID: 4660788582381795153}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -148,7 +149,7 @@ MonoBehaviour:
   - {fileID: 4763935498725721765}
   randomaizer: 0
   LazerBeam: {fileID: 2385003611321697371}
-  HitBox: {fileID: 0}
+  HitBox: {fileID: 4895226374336444796}
   RandomLazerPoint: {fileID: 0}
   RandomLazerUpPoint: {fileID: 0}
   CenterlazerspawnPoint: {fileID: 969928664687727697}
@@ -594,6 +595,51 @@ Transform:
   m_Father: {fileID: 8681175174955025100}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4895226374336444796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4660788582381795153}
+  - component: {fileID: 6446567479554732608}
+  m_Layer: 0
+  m_Name: Lazer Hitbox
+  m_TagString: Lazer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4660788582381795153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895226374336444796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8156497832066170871}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6446567479554732608
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895226374336444796}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 67.13, z: 0.04}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5949225420824840948
 GameObject:
   m_ObjectHideFlags: 0
