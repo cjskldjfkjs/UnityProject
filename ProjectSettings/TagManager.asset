@@ -7,6 +7,8 @@ TagManager:
   - Wind
   - Plane
   - Lazer
+  - Dash Bonus
+  - Invincibility Bonus
   layers:
   - Default
   - TransparentFX

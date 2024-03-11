@@ -11,7 +11,7 @@ public class Movement_for_planer : MonoBehaviour
     public GameObject Rotational_point;
     public Transform LeftPoint, CentrePoint, RightPoint;
     private Rigidbody rigidbody;
-    public bool isWindFlow, isDelay;
+    public bool isWindFlow, isDelay, Invincible = false;
     public Image Boost_Image;
     void Start()
     {
@@ -156,7 +156,22 @@ public class Movement_for_planer : MonoBehaviour
         }
         rigidbody.useGravity = true;
     }
-  
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Dash Bonus"))
+            rigidbody.AddForce(transform.forward * 10000, ForceMode.Impulse);
+        if (other.gameObject.CompareTag("Invincibility Bonus"))
+        {   
+            Invincible = true;
+            StartCoroutine(TimerForIVbonus());
+        }
+    }
+    private IEnumerator TimerForIVbonus ()
+    { 
+        yield return new WaitForSeconds(5f);
+        Invincible = false;
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Wind"))

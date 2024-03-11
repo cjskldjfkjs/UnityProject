@@ -13,7 +13,7 @@ public class Bonus_Spawner : MonoBehaviour
     {
         randomaizer = Random.Range(0, 2);
         bonusPosition = Instantiate(Bonus[randomaizer], spawnPoint.transform.position + new Vector3(Xcoordinate[randomaizerX], 
-            Random.Range(0, 1000), Random.Range(0, 1000)), Quaternion.identity);
+            Random.Range(10, 170), Random.Range(0, 1000)), Quaternion.identity);
         bonusPosition.transform.SetParent(canvas.transform);
     }
 

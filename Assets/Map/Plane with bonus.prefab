@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bonus:
-  - {fileID: 4702713304633465621, guid: b810274dc9f74f2408f545cd1926fab3, type: 3}
+  - {fileID: 7924408141949266099, guid: 1c93187e718bc5e4da0755a1d9573c53, type: 3}
   - {fileID: 7924408141949266099, guid: 1c93187e718bc5e4da0755a1d9573c53, type: 3}
   Xcoordinate: fbffffff0000000005000000
   spawnPoint: {fileID: 1701552635253944796}
