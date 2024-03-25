@@ -13,6 +13,7 @@ public class Movement_for_planer : MonoBehaviour
     private Rigidbody rigidbody;
     public bool isWindFlow, isDelay, Invincible = false;
     public Image Boost_Image;
+    public GameObject Menu, DeathScreen;
     void Start()
     {
         startforceZ = forceZ;
@@ -20,6 +21,23 @@ public class Movement_for_planer : MonoBehaviour
         rigidbody = gameObject.GetComponent<Rigidbody>();
         Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Cursor.visible = false;
+        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+    }
+    public void BeginTheJournej()
+    { 
+        Menu.gameObject.SetActive(false);
+        StartCoroutine(CameraRotation());
+        rigidbody.constraints = RigidbodyConstraints.None;
+    }
+
+    private IEnumerator CameraRotation()
+    { 
+        while(Camera.main.transform.rotation != Quaternion.Euler(8.677f, 0f, 0f))
+        {
+            yield return new WaitForSeconds(0.00001f);
+            Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, 
+                Quaternion.Euler(8.677f, 0f, 0f), 0.99f * Time.deltaTime);
+        }
     }
 
     // Update is called once per frame
@@ -143,7 +161,11 @@ public class Movement_for_planer : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.CompareTag("Lazer"))
-            Destroy(gameObject);
+        { 
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            DeathScreen.SetActive(true);          
+        }
+            
         if (other.gameObject.CompareTag("Wind"))
         { 
             isWindFlow = true;
