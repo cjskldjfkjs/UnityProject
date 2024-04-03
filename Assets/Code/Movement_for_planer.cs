@@ -28,6 +28,7 @@ public class Movement_for_planer : MonoBehaviour
         Menu.gameObject.SetActive(false);
         StartCoroutine(CameraRotation());
         rigidbody.constraints = RigidbodyConstraints.None;
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     private IEnumerator CameraRotation()
@@ -38,6 +39,7 @@ public class Movement_for_planer : MonoBehaviour
             Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, 
                 Quaternion.Euler(8.677f, 0f, 0f), 0.99f * Time.deltaTime);
         }
+        yield break;
     }
 
     // Update is called once per frame
@@ -80,6 +82,16 @@ public class Movement_for_planer : MonoBehaviour
         RotationByKeyboard();
     }
 
+    private void Respawn()
+    { 
+        if(gameObject.GetComponent<ReviveAfterAd>().addFinished)
+        {
+            StartCoroutine(TimerForIVbonus());
+            rigidbody.constraints = RigidbodyConstraints.None;
+            rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            DeathScreen.SetActive(false);
+        }
+    }
     private void MovmentByKeyboard()
     {
         if (Input.GetKey(KeyCode.A) && !isWindFlow)
@@ -160,7 +172,7 @@ public class Movement_for_planer : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.CompareTag("Lazer"))
+        if(other.gameObject.CompareTag("Lazer") && !Invincible)
         { 
             rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             DeathScreen.SetActive(true);          
@@ -190,7 +202,7 @@ public class Movement_for_planer : MonoBehaviour
     }
     private IEnumerator TimerForIVbonus ()
     { 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(15f);
         Invincible = false;
     }
 
