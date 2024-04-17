@@ -9,6 +9,8 @@ TagManager:
   - Lazer
   - Dash Bonus
   - Invincibility Bonus
+  - DashBonus
+  - ShieldBonus
   layers:
   - Default
   - TransparentFX

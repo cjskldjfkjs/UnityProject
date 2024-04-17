@@ -81145,6 +81145,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addFinished: 0
+--- !u!114 &919132149210912517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149210912508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3389399c6fd0584dac6aeba52949ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DashBonusEffect: {fileID: 1826030801629244060, guid: 415a3fcc7e1e8ee4883e731472347115, type: 3}
+  ShieldBonusEffect: {fileID: 4216525040596329168, guid: d6202116902ae5b4fbcb78b78198f065, type: 3}
+  Player: {fileID: 919132149210912508}
+  DashBonus: {fileID: 4702713304633465621, guid: b810274dc9f74f2408f545cd1926fab3, type: 3}
+  ShieldBonus: {fileID: 7924408141949266099, guid: 1c93187e718bc5e4da0755a1d9573c53, type: 3}
 --- !u!33 &1390571226629694033
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -130617,6 +130634,10 @@ PrefabInstance:
     - target: {fileID: 6996038578790937064, guid: 7b1f9edb62b93504fa016faf99971c4b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996038578790937064, guid: 7b1f9edb62b93504fa016faf99971c4b, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7664348840781376338, guid: 7b1f9edb62b93504fa016faf99971c4b, type: 3}
       propertyPath: m_RootOrder
