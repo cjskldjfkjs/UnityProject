@@ -29,6 +29,8 @@ public class Movement_for_planer : MonoBehaviour
         StartCoroutine(CameraRotation());
         rigidbody.constraints = RigidbodyConstraints.None;
         rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        rigidbody.AddForce(transform.up * 2);
+        rigidbody.AddForce(transform.forward * 10);
     }
 
     private IEnumerator CameraRotation()
@@ -183,10 +185,16 @@ public class Movement_for_planer : MonoBehaviour
             isWindFlow = true;
             rigidbody.AddForce(transform.forward * 100, ForceMode.Force);
             rigidbody.AddForce(transform.up * 70, ForceMode.Force);
-            rigidbody.AddForce(-transform.up * 50, ForceMode.Force);
+            rigidbody.AddForce(-transform.up * 45, ForceMode.Force);
+            StartCoroutine(TimeBeforeInStreamMode());
             rigidbody.useGravity = false;
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
                 Quaternion.Euler(0, 0, 0), 20 * Time.deltaTime);
+        }
+        else
+        { 
+            rigidbody.constraints = RigidbodyConstraints.None;
+            rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
         rigidbody.useGravity = true;
     }
@@ -204,6 +212,11 @@ public class Movement_for_planer : MonoBehaviour
     { 
         yield return new WaitForSeconds(15f);
         Invincible = false;
+    }
+    private IEnumerator TimeBeforeInStreamMode()
+    { 
+        yield return new WaitForSeconds(3f);
+        rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
     }
 
     private void OnTriggerExit(Collider other)
