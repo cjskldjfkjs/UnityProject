@@ -201,7 +201,7 @@ public class Movement_for_planer : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Dash Bonus"))
-            rigidbody.AddForce(transform.forward * 10000, ForceMode.Impulse);
+            rigidbody.AddForce(transform.forward * 1000, ForceMode.Impulse);
         if (other.gameObject.CompareTag("Invincibility Bonus"))
         {   
             Invincible = true;

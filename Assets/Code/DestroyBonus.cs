@@ -20,20 +20,16 @@ public class DestroyBonus : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Dash Bonus"))
         {
-            Instantiate(DashBonusEffect, Player.transform.position, Quaternion.identity);
-            Instantiate(DashBonusEffect, Player.transform.position, 
-                Quaternion.identity).transform.SetParent(Player.transform);
-            Instantiate(DashBonusEffect, Player.transform.position, 
-                Quaternion.identity).transform.position = new Vector3(1000, 0, 0);
+            GameObject dash_Variable = Instantiate(DashBonusEffect, Player.transform.position, Quaternion.identity);
+            dash_Variable.transform.SetParent(Player.transform);
+            dash_Variable.transform.localPosition = new Vector3(0, 0, 20);
             Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("Invincibility Bonus"))
         {
-            Instantiate(ShieldBonusEffect, Player.transform.position, Quaternion.identity);
-            Instantiate(ShieldBonusEffect, Player.transform.position, 
-                Quaternion.identity).transform.SetParent(Player.transform);
-            Instantiate(ShieldBonusEffect, Player.transform.position,
-                Quaternion.identity).transform.position = new Vector3(1000, 0, 0);
+            GameObject invincible_Variable = Instantiate(ShieldBonusEffect, Player.transform.position, Quaternion.identity);
+            invincible_Variable.transform.SetParent(Player.transform);
+            invincible_Variable.transform.localPosition = new Vector3(0, 0, 20);
             Destroy(other.gameObject);
         }
     }
