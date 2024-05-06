@@ -2239,11 +2239,20 @@ MonoBehaviour:
   forceY: 20
   startforceZ: 0
   startforceY: 0
+  accumulativeForce: 0
   mouseX: 0
   mouseY: 0
+  boost: 0
+  Rotational_point: {fileID: 0}
   LeftPoint: {fileID: 0}
   CentrePoint: {fileID: 0}
   RightPoint: {fileID: 0}
+  isWindFlow: 0
+  isDelay: 0
+  Invincible: 0
+  Boost_Image: {fileID: 0}
+  Menu: {fileID: 0}
+  DeathScreen: {fileID: 0}
 --- !u!1 &7243457511969332094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,6 +2346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7914942018087914080}
   - component: {fileID: 7914942018087914087}
+  - component: {fileID: 2457753791200472540}
   - component: {fileID: 7914942018087914086}
   m_Layer: 0
   m_Name: Main Camera
@@ -2403,6 +2413,20 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &2457753791200472540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914942018087914085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c90db2faa83ad4b8f58261cb646a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  HitPoint: {fileID: 0}
 --- !u!81 &7914942018087914086
 AudioListener:
   m_ObjectHideFlags: 0
