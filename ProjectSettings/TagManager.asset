@@ -11,6 +11,7 @@ TagManager:
   - Invincibility Bonus
   - DashBonus
   - ShieldBonus
+  - startButton
   layers:
   - Default
   - TransparentFX
