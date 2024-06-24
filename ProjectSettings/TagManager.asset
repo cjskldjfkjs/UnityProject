@@ -12,6 +12,8 @@ TagManager:
   - DashBonus
   - ShieldBonus
   - startButton
+  - AirZone
+  - TorbulenceZone
   layers:
   - Default
   - TransparentFX

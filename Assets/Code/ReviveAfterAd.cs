@@ -19,7 +19,7 @@ public class ReviveAfterAd : MonoBehaviour, IUnityAdsInitializationListener, IUn
     // Start is called before the first frame update
     void Start()
     {
-        Advertisement.Initialize("5573073", true);
+        Advertisement.Initialize("5573073", true, this);
         addFinished = false;
     }
 
@@ -31,7 +31,7 @@ public class ReviveAfterAd : MonoBehaviour, IUnityAdsInitializationListener, IUn
     public void AdForRevive()
     {
         addFinished = false;
-        Advertisement.Show("Rewarded_Android");
+        Advertisement.Show("Rewarded_Android", this);
     }
 
     public void OnUnityAdsAdLoaded(string placementId)
@@ -56,12 +56,17 @@ public class ReviveAfterAd : MonoBehaviour, IUnityAdsInitializationListener, IUn
 
     public void OnUnityAdsShowClick(string placementId)
     {
+        addFinished = true;
         throw new System.NotImplementedException();
     }
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
-        throw new System.NotImplementedException();
+        if (placementId.Equals(placementId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+        {
+            Debug.Log("Unity Ads Rewarded Ad Completed");
+        }
         addFinished = true;
+        throw new System.NotImplementedException();      
     }
 }
