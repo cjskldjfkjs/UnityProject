@@ -17,6 +17,8 @@ public class Movement_for_planer : MonoBehaviour
     public GameObject Menu, DeathScreen;
     public ReviveAfterAd reviveAfterAd;
     public int addCounter;
+    public GameObject Engines, Barier;
+    public Material Shield, PreviousMaterial;
     void Start()
     {
         startforceZ = forceZ;
@@ -100,6 +102,8 @@ public class Movement_for_planer : MonoBehaviour
             DeathScreen.SetActive(false);
             reviveAfterAd.addFinished = false;
             gameObject.GetComponent<Collider>().isTrigger = false;
+            Engines.GetComponent<MeshRenderer>().materials[0] = Shield;
+            Barier.SetActive(true);
         }
     }
     public void Reset()
@@ -236,6 +240,8 @@ public class Movement_for_planer : MonoBehaviour
         if (other.gameObject.CompareTag("Invincibility Bonus"))
         {
             Invincible = true;
+            Engines.GetComponent<MeshRenderer>().materials[0] = Shield;
+            Barier.SetActive(true);
             StartCoroutine(TimerForIVbonus());
         }
     }
@@ -243,11 +249,15 @@ public class Movement_for_planer : MonoBehaviour
     {
         yield return new WaitForSeconds(15f);
         Invincible = false;
+        Engines.GetComponent<MeshRenderer>().materials[0] = PreviousMaterial;
+        Barier.SetActive(false);
     }
     private IEnumerator ReviveBonus()
     {
         yield return new WaitForSeconds(3f);
         gameObject.GetComponent<Collider>().isTrigger = true;
+        Engines.GetComponent<MeshRenderer>().materials[0] = PreviousMaterial;
+        Barier.SetActive(false);
     }
     private IEnumerator TimeBeforeInStreamMode()
     {
