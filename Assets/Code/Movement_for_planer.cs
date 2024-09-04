@@ -12,7 +12,7 @@ public class Movement_for_planer : MonoBehaviour
     public GameObject Rotational_point;
     public Transform LeftPoint, CentrePoint, RightPoint;
     private Rigidbody rigidbody;
-    public bool isWindFlow, isDelay, Invincible = false;
+    public bool isWindFlow, isDelay, Invincible = false, lazerHit=false;
     public Image Boost_Image;
     public GameObject Menu, DeathScreen;
     public ReviveAfterAd reviveAfterAd;
@@ -88,15 +88,16 @@ public class Movement_for_planer : MonoBehaviour
         MovmentByKeyboard();
         RotationByKeyboard();
  
-        Respawn();
+        
     }
 
-    private void Respawn()
+    public void Respawn()
     {
-        if (gameObject.GetComponent<ReviveAfterAd>().addFinished && addCounter<1)
+        if (/*gameObject.GetComponent<ReviveAfterAd>().addFinished &&*/ addCounter<1)
         {
             addCounter++;
             StartCoroutine(ReviveBonus());
+            lazerHit = false;
             rigidbody.constraints = RigidbodyConstraints.None;
             rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             DeathScreen.SetActive(false);
@@ -104,6 +105,13 @@ public class Movement_for_planer : MonoBehaviour
             gameObject.GetComponent<Collider>().isTrigger = false;
             Engines.GetComponent<MeshRenderer>().materials[0] = Shield;
             Barier.SetActive(true);
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        }
+        
+        else
+        { 
+            gameObject.GetComponent<Collider>().isTrigger = true;
+            Time.timeScale = 1;
         }
     }
     public void Reset()
@@ -209,11 +217,7 @@ public class Movement_for_planer : MonoBehaviour
             rigidbody.AddForce(transform.up * 30, ForceMode.Force);
         }
 
-        if (other.gameObject.CompareTag("Lazer") && !Invincible)
-        {
-            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-            DeathScreen.SetActive(true);
-        }
+        
 
         if (other.gameObject.CompareTag("Wind"))
         {
@@ -226,7 +230,7 @@ public class Movement_for_planer : MonoBehaviour
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
                 Quaternion.Euler(0, 0, 0), 20 * Time.deltaTime);
         }
-        else
+        else if(!lazerHit)
         {
             rigidbody.constraints = RigidbodyConstraints.None;
             rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
@@ -244,6 +248,13 @@ public class Movement_for_planer : MonoBehaviour
             Barier.SetActive(true);
             StartCoroutine(TimerForIVbonus());
         }
+
+        if (other.gameObject.CompareTag("Lazer") && !Invincible)
+        {
+            lazerHit = true;
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            DeathScreen.SetActive(true);
+        }
     }
     private IEnumerator TimerForIVbonus()
     {
@@ -254,7 +265,7 @@ public class Movement_for_planer : MonoBehaviour
     }
     private IEnumerator ReviveBonus()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(10f);
         gameObject.GetComponent<Collider>().isTrigger = true;
         Engines.GetComponent<MeshRenderer>().materials[0] = PreviousMaterial;
         Barier.SetActive(false);

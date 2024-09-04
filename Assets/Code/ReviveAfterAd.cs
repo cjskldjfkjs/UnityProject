@@ -56,17 +56,18 @@ public class ReviveAfterAd : MonoBehaviour, IUnityAdsInitializationListener, IUn
 
     public void OnUnityAdsShowClick(string placementId)
     {
-        addFinished = true;
-        throw new System.NotImplementedException();
+        addFinished = true;      
     }
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
+        
+        
         if (placementId.Equals(placementId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
+            gameObject.GetComponent<Movement_for_planer>().Respawn();
         }
         addFinished = true;
-        throw new System.NotImplementedException();      
     }
 }
