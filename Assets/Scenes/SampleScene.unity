@@ -62014,6 +62014,7 @@ MonoBehaviour:
   torbulenceZone: {fileID: 6236081688867012153, guid: 5627d7c5803b8214bae19e1de9a59496, type: 3}
   count: 1
   randomaizer: 0
+  platformList: []
   planes:
   - {fileID: 1445121684503700676, guid: f02332b26bb4cbd4d840b3f96c561a46, type: 3}
   - {fileID: 834730324355186789, guid: 60003911313491f47995c881ccee2834, type: 3}
@@ -128328,9 +128329,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 99.36377
-  m_Height: 3090.6191
+  m_Height: 2775.699
   m_Direction: 1
-  m_Center: {x: 48.704147, y: 1482.7191, z: -22.978296}
+  m_Center: {x: 48.704147, y: 1325.3049, z: -23.201447}
 --- !u!1 &5044467072966226126
 GameObject:
   m_ObjectHideFlags: 0

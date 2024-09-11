@@ -67,10 +67,18 @@ public class Movement_for_planer : MonoBehaviour
             forceZ = startforceZ;
             boost += 0.005f;
         }
+
+        if (Input.GetKey(KeyCode.LeftControl) && boost > 0f && !isDelay)
+        {
+            rigidbody.AddForce(-transform.up * 200, ForceMode.Impulse);
+            boost = 0f;
+        }
+
         if (boost <= 0)
             isDelay = true;
         else if (boost >= 1)
             isDelay = false;
+
         if (rigidbody.velocity.z >= 300f)
         {
             rigidbody.velocity = new Vector3(0f, rigidbody.velocity.y, 250f);
@@ -105,7 +113,7 @@ public class Movement_for_planer : MonoBehaviour
             gameObject.GetComponent<Collider>().isTrigger = false;
             Engines.GetComponent<MeshRenderer>().materials[0] = Shield;
             Barier.SetActive(true);
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            
         }
         
         else

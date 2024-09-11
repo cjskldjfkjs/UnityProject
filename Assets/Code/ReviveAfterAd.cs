@@ -67,7 +67,8 @@ public class ReviveAfterAd : MonoBehaviour, IUnityAdsInitializationListener, IUn
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
             gameObject.GetComponent<Movement_for_planer>().Respawn();
+            addFinished = true;
         }
-        addFinished = true;
+        
     }
 }
