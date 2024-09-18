@@ -70,7 +70,7 @@ public class Movement_for_planer : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftControl) && boost > 0f && !isDelay)
         {
-            rigidbody.AddForce(-transform.up * 200, ForceMode.Impulse);
+            rigidbody.AddForce(-transform.up * 100, ForceMode.Impulse);
             boost = 0f;
         }
 
