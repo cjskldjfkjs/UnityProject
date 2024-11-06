@@ -14,7 +14,7 @@ public class Distance_traveld_indicator : MonoBehaviour
 
     public Image distanceIndicator, distanceIndicator1;
 
-    private TextMeshPro distanceTraveledTMPro;
+    public TMP_Text distanceTraveledTMPro, distanceTraveledTMProEffect;
 
     public GameObject distanceTraveledText;
 
@@ -22,20 +22,26 @@ public class Distance_traveld_indicator : MonoBehaviour
     private GameObject DistanceCanvas1, DistanceCanvas2;
 
     [SerializeField]
+    private GameObject distanceEffect;
+
+    public Animator break250Anim;
+
+    [SerializeField]
     private float randomR, randomG, randomB;
     // Start is called before the first frame update
     void Start()
     {
+        break250Anim = distanceEffect.GetComponent<Animator>();
         distanceIndicator.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
         distanceIndicator1.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
         switchIndicators = false;
-        distanceTraveledTMPro = distanceTraveledText.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        distanceTraveledText = distanceTraveled;
+        distanceTraveledTMProEffect.text = distanceTraveled.ToString();
+        distanceTraveledTMPro.text = distanceTraveled.ToString();
         if (distance1 < 250 && !switchIndicators)
         {
             distance1 = Mathf.RoundToInt(Mathf.Abs((gameObject.transform.position.z - startPoint.transform.position.z) / 5));
@@ -44,7 +50,8 @@ public class Distance_traveld_indicator : MonoBehaviour
 
         else if (distance1 >= 250 && !switchIndicators)
         {
-            distanceTraveled = +distance1;
+            distanceTraveled += distance1;
+            break250Anim.SetTrigger("Broke 250");
             distance2 = 0;
             RandomColor();
             switchIndicators = true;
@@ -63,7 +70,8 @@ public class Distance_traveld_indicator : MonoBehaviour
 
         else if (distance2 >= 250 && switchIndicators)
         {
-            distanceTraveled = +distance2;
+            distanceTraveled += distance2;
+            break250Anim.SetTrigger("Broke 250");
             distance1 = 0;
             RandomColor();
             switchIndicators = false;
