@@ -8,7 +8,14 @@ public class Distance_traveld_indicator : MonoBehaviour
 {
     public GameObject startPoint;
 
-    private float distance1, distance2, distanceTraveled, i, DCanvas1, DCanvas2;
+    private float distance1, distance2, i, DCanvas1, DCanvas2;
+
+    public float maxSpeedBreaker
+    {
+        get; private set;
+    }
+
+    private float distanceTraveled;
 
     private bool switchIndicators;
 
@@ -51,6 +58,7 @@ public class Distance_traveld_indicator : MonoBehaviour
         else if (distance1 >= 250 && !switchIndicators)
         {
             distanceTraveled += distance1;
+            maxSpeedBreaker += distance1;
             break250Anim.SetTrigger("Broke 250");
             distance2 = 0;
             RandomColor();
@@ -71,6 +79,7 @@ public class Distance_traveld_indicator : MonoBehaviour
         else if (distance2 >= 250 && switchIndicators)
         {
             distanceTraveled += distance2;
+            maxSpeedBreaker += distance2;
             break250Anim.SetTrigger("Broke 250");
             distance1 = 0;
             RandomColor();

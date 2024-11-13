@@ -8,7 +8,7 @@ public class Movement_for_planer : MonoBehaviour
 {
     public float forceZ, forceY, startforceZ, startforceY, accumulativeForce;
     public float mouseX, mouseY;
-    public float boost;
+    public float boost, maxSpeed = 300f, maxSpeedBreaker;
     public GameObject Rotational_point;
     public Transform LeftPoint, CentrePoint, RightPoint;
     private Rigidbody rigidbody;
@@ -19,8 +19,11 @@ public class Movement_for_planer : MonoBehaviour
     public int addCounter;
     public GameObject Engines, Barier;
     public Material Shield, PreviousMaterial;
+    private Distance_traveld_indicator distance_Traveld_Indicator;
+    public Animator uiAnimator;
     void Start()
     {
+        distance_Traveld_Indicator = gameObject.GetComponent<Distance_traveld_indicator>();
         startforceZ = forceZ;
         startforceY = forceY;
         rigidbody = gameObject.GetComponent<Rigidbody>();
@@ -52,9 +55,17 @@ public class Movement_for_planer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        maxSpeedBreaker = distance_Traveld_Indicator.maxSpeedBreaker;
         Boost_Image.fillAmount = boost;
         rigidbody.AddForce(transform.up * forceY);
         rigidbody.AddForce(transform.forward * forceZ);
+
+        if(maxSpeedBreaker >= 700)
+        { 
+            maxSpeed += 5;
+            maxSpeedBreaker = 0;
+            uiAnimator.SetTrigger("Increase the speed");
+        }
         if (Input.GetKey(KeyCode.LeftShift) && boost > 0f && !isDelay)
         {
             forceZ += 0.5f;
@@ -79,13 +90,13 @@ public class Movement_for_planer : MonoBehaviour
         else if (boost >= 1)
             isDelay = false;
 
-        if (rigidbody.velocity.z >= 300f)
+        if (rigidbody.velocity.z >= maxSpeed)
         {
             rigidbody.velocity = new Vector3(0f, rigidbody.velocity.y, 250f);
         }
-        else if (rigidbody.velocity.y >= 300f)
+        else if (rigidbody.velocity.y >= maxSpeed)
         {
-            rigidbody.velocity = new Vector3(0f, 250f, rigidbody.velocity.z);
+            rigidbody.velocity = new Vector3(0f, 150f, rigidbody.velocity.z);
         }
 
         Rotational_point.transform.rotation = Quaternion.Euler(Rotational_point.transform.rotation.x,
@@ -294,12 +305,12 @@ public class Movement_for_planer : MonoBehaviour
             //rigidbody.velocity = new Vector3(0f, 100f, rigidbody.velocity.z);
         }
     }
-    private void RotationByMouse()
-    {
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
-        transform.Rotate(mouseY, mouseX, 0);
-        transform.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-    }
+    //private void RotationByMouse()
+    //{
+    //    mouseX = Input.GetAxis("Mouse X");
+    //    mouseY = Input.GetAxis("Mouse Y");
+    //    transform.Rotate(mouseY, mouseX, 0);
+    //    transform.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    //}
 }
 
