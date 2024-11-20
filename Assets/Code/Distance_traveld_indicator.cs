@@ -32,6 +32,9 @@ public class Distance_traveld_indicator : MonoBehaviour
 
     [SerializeField]
     private float randomR, randomG, randomB;
+
+    public AudioSource beat250Sound;
+    public AudioSource increaseMaxSpeedSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +51,9 @@ public class Distance_traveld_indicator : MonoBehaviour
         distanceTraveledTMPro.text = distanceTraveled.ToString();
 
         if (maxSpeedBreaker >= 700)
-        { 
+        {
+            gameObject.GetComponent<Movement_for_planer>().uiAnimator.Play("Increase the max speed");
+            gameObject.GetComponent<Movement_for_planer>().maxSpeed += 5;
             maxSpeedBreaker = 0;
         }
 
@@ -63,6 +68,8 @@ public class Distance_traveld_indicator : MonoBehaviour
             distanceTraveled += distance1;
             maxSpeedBreaker += distance1;
             break250Anim.SetTrigger("Broke 250");
+            beat250Sound.Play();
+            increaseMaxSpeedSound.Play();
             distance2 = 0;
             RandomColor();
             switchIndicators = true;
@@ -84,6 +91,8 @@ public class Distance_traveld_indicator : MonoBehaviour
             distanceTraveled += distance2;
             maxSpeedBreaker += distance2;
             break250Anim.SetTrigger("Broke 250");
+            beat250Sound.Play();
+            increaseMaxSpeedSound.Play();
             distance1 = 0;
             RandomColor();
             switchIndicators = false;

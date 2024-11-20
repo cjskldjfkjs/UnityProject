@@ -60,13 +60,13 @@ public class Movement_for_planer : MonoBehaviour
         rigidbody.AddForce(transform.up * forceY);
         rigidbody.AddForce(transform.forward * forceZ);
 
-        if(maxSpeedBreaker >= 700)
-        {
-            //uiAnimator.SetTrigger("Increase the speed");
-            uiAnimator.Play("Increase the max speed");
-            maxSpeed += 5;
-            maxSpeedBreaker = 0;
-        }
+        //if(maxSpeedBreaker >= 700)
+        //{
+        //    //uiAnimator.SetTrigger("Increase the speed");
+        //    uiAnimator.Play("Increase the max speed");
+        //    maxSpeed += 5;
+        //    maxSpeedBreaker = 0;
+        //}
         if (Input.GetKey(KeyCode.LeftShift) && boost > 0f && !isDelay)
         {
             forceZ += 0.5f;
