@@ -10,10 +10,7 @@ public class Distance_traveld_indicator : MonoBehaviour
 
     private float distance1, distance2, i, DCanvas1, DCanvas2;
 
-    public float maxSpeedBreaker
-    {
-        get; private set;
-    }
+    public float maxSpeedBreaker;
 
     private float distanceTraveled;
 
@@ -49,6 +46,12 @@ public class Distance_traveld_indicator : MonoBehaviour
     {
         distanceTraveledTMProEffect.text = distanceTraveled.ToString();
         distanceTraveledTMPro.text = distanceTraveled.ToString();
+
+        if (maxSpeedBreaker >= 700)
+        { 
+            maxSpeedBreaker = 0;
+        }
+
         if (distance1 < 250 && !switchIndicators)
         {
             distance1 = Mathf.RoundToInt(Mathf.Abs((gameObject.transform.position.z - startPoint.transform.position.z) / 5));
