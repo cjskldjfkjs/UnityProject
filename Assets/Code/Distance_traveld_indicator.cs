@@ -55,6 +55,7 @@ public class Distance_traveld_indicator : MonoBehaviour
             gameObject.GetComponent<Movement_for_planer>().uiAnimator.Play("Increase the max speed");
             gameObject.GetComponent<Movement_for_planer>().maxSpeed += 5;
             maxSpeedBreaker = 0;
+            increaseMaxSpeedSound.Play();
         }
 
         if (distance1 < 250 && !switchIndicators)
@@ -69,7 +70,6 @@ public class Distance_traveld_indicator : MonoBehaviour
             maxSpeedBreaker += distance1;
             break250Anim.SetTrigger("Broke 250");
             beat250Sound.Play();
-            increaseMaxSpeedSound.Play();
             distance2 = 0;
             RandomColor();
             switchIndicators = true;
@@ -92,7 +92,6 @@ public class Distance_traveld_indicator : MonoBehaviour
             maxSpeedBreaker += distance2;
             break250Anim.SetTrigger("Broke 250");
             beat250Sound.Play();
-            increaseMaxSpeedSound.Play();
             distance1 = 0;
             RandomColor();
             switchIndicators = false;

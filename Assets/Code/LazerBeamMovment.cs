@@ -10,14 +10,15 @@ public class LazerBeamMovment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lazerHeight = GameObject.Find("Upper level").transform.position.y;
-        lazerBottom = GameObject.Find("Lower level").transform.position.y;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        gameObject.transform.Translate(Vector3.up * 100 * direction);
+        lazerHeight = GameObject.Find("Upper level").transform.position.y - 20f;
+        lazerBottom = GameObject.Find("Lower level").transform.position.y + 20f;
+
+        gameObject.transform.Translate(Vector3.up * 50 * direction);
         if(gameObject.transform.position.y >= lazerHeight)
             direction = -1;
         else if(gameObject.transform.position.y <= lazerBottom)

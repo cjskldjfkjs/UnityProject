@@ -20,11 +20,17 @@ public class LazerSpawner : MonoBehaviour
             randomaizer = Random.Range(0, 3);
             RandomLazerPoint = Instantiate(Lazer[randomaizer], new Vector3(0, 0, 0), Quaternion.identity);
             RandomLazerPoint.transform.SetParent(LowerLevel.transform);
-            RandomLazerPoint.transform.position = new Vector3(Lazer[randomaizer].transform.position.x, LowerLevel.transform.position.y, LowerLevel.transform.position.z + Random.Range(-1500f, 1500f));
-            LazerHitbox = Instantiate(Lazer_HitBox, new Vector3(RandomLazerPoint.transform.position.x, RandomLazerPoint.transform.position.y, RandomLazerPoint.transform.position.z), Quaternion.identity);
+            RandomLazerPoint.transform.position = new Vector3(Lazer[randomaizer].transform.position.x, LowerLevel.transform.position.y, 
+                LowerLevel.transform.position.z + Random.Range(-1500f, 1500f));
+
+            LazerHitbox = Instantiate(Lazer_HitBox, new Vector3(RandomLazerPoint.transform.position.x, 
+                RandomLazerPoint.transform.position.y, RandomLazerPoint.transform.position.z), Quaternion.identity);
+
             LazerHitbox.transform.SetParent(LowerLevel.transform);
             RandomLazerPoint.SetActive(true);
-            RandomLazerUpPoint = Instantiate(Lazer[randomaizer], new Vector3(Lazer[randomaizer].transform.position.x, UpperLevel.transform.position.y, RandomLazerPoint.transform.position.z), Quaternion.Euler(0, 0, 180f));
+            RandomLazerUpPoint = Instantiate(Lazer[randomaizer], new Vector3(Lazer[randomaizer].transform.position.x, 
+                UpperLevel.transform.position.y, RandomLazerPoint.transform.position.z), Quaternion.Euler(0, 0, 180f));
+
             RandomLazerUpPoint.transform.SetParent(UpperLevel.transform);
             RandomLazerUpPoint.SetActive(true);
 
