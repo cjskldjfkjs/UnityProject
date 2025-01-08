@@ -62724,8 +62724,8 @@ MonoBehaviour:
   platformList: []
   planes:
   - {fileID: 1445121684503700676, guid: f02332b26bb4cbd4d840b3f96c561a46, type: 3}
-  - {fileID: 834730324355186789, guid: 60003911313491f47995c881ccee2834, type: 3}
   - {fileID: 5460145595937243698, guid: ad955cd0a5c4be340ab2901dae7a8bdf, type: 3}
+  - {fileID: 834730324355186789, guid: 60003911313491f47995c881ccee2834, type: 3}
   wind_plane: {fileID: 0}
   normal_plane: {fileID: 0}
   plane0: {fileID: 1445121684012869013}
@@ -67822,7 +67822,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987341995}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.034771014, y: 1.1049805, z: 8.09}
+  m_LocalPosition: {x: 0.034771014, y: 1.1049805, z: 5.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -68531,7 +68531,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 8.21
+    angle: 33.81
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -69889,7 +69889,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3.13
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -83319,6 +83319,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &919132149210912529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149210912508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0344faaf4711c44995ce3e5cf5a689e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroid: {fileID: 3412827427424092750, guid: d0ab8c806bc69d54983a57c1706deca7, type: 3}
+  player: {fileID: 919132149210912508}
 --- !u!23 &958545409455798627
 MeshRenderer:
   m_ObjectHideFlags: 0

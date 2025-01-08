@@ -14,7 +14,7 @@ public class LazerSpawner : MonoBehaviour
     [SerializeField] private GameObject CenterlazerspawnPointUP, RightlazerspawnPointUP, LeftlazerspawnPointUP, UpperLevel;
     void Start()
     {
-        int i = 3;
+        int i = Random.Range(5, 10);
         while (i > 0)
         {
             randomaizer = Random.Range(0, 3);
