@@ -22,7 +22,7 @@ public class Asteroid_Spawner : MonoBehaviour
     private void Spawner()
     { 
         theAsteroid = Instantiate(asteroid, new Vector3(0,0,0), Quaternion.identity);
-        theAsteroid.transform.position = new Vector3(0, player.transform.position.y + 5, player.transform.position.z + 1200);
+        theAsteroid.transform.position = new Vector3(0, player.transform.position.y + 5, player.transform.position.z + 2000);
         theAsteroid.GetComponent<Rigidbody>().AddForce(-Vector3.forward * 1000, ForceMode.Impulse);
         theAsteroid.GetComponent<Rigidbody>().AddTorque(Vector3.right * 50, ForceMode.Impulse);
         //theAsteroid.GetComponent<Rigidbody>().AddForceAtPosition(-Vector3.forward * 15, new Vector3(theAsteroid.transform.position.x - 5, 
