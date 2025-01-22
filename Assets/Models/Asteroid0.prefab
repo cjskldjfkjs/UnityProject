@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 2975488900313893694}
   - component: {fileID: 3827052898081746109}
   - component: {fileID: 661108597894412450}
+  - component: {fileID: 6336942335021460936}
   - component: {fileID: 5442430844869074920}
   - component: {fileID: 3913011946526619325}
   - component: {fileID: 7381987429454354693}
@@ -245,6 +246,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6336942335021460936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3412827427424092750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce715de8f0b79240a29119be9b52404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &5442430844869074920
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -269,7 +282,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3412827427424092750}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -288,6 +301,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  asteroidBoomEfect: {fileID: 2129691192554226975, guid: 2b0e37e956bbedf4c9cf18e91f5f1bed, type: 3}
   Bonuses:
+  - {fileID: 6544517710053384581, guid: 98caba2cc36ee2e46b96097b6f72f855, type: 3}
   - {fileID: 4702713304633465621, guid: b810274dc9f74f2408f545cd1926fab3, type: 3}
   - {fileID: 7924408141949266099, guid: 1c93187e718bc5e4da0755a1d9573c53, type: 3}

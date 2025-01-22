@@ -5,9 +5,10 @@ using UnityEngine;
 public class AsteroidModule : MonoBehaviour
 {
     public GameObject player;
+    public GameObject asteroidBoomEfect;
 
     public GameObject[] Bonuses;
-    private GameObject dashBonus, shieldBonus;
+    private GameObject dashBonus, shieldBonus, coin;
 
     private string playerTag;
 
@@ -27,9 +28,10 @@ public class AsteroidModule : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        randomBonus = Random.Range(0, 1);
-        if(collision.gameObject.tag == playerTag)
+        randomBonus = Random.Range(0, 2);
+        if(collision.gameObject.tag == playerTag && !player.GetComponent<Movement_for_planer>().lazerHit && !player.GetComponent<Movement_for_planer>().Invincible)
         { 
+            Instantiate(asteroidBoomEfect, gameObject.transform.position, Quaternion.identity);
             Instantiate(Bonuses[randomBonus], gameObject.transform.position, Quaternion.identity); 
             Destroy(gameObject);
         }

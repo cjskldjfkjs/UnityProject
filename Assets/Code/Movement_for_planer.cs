@@ -286,6 +286,16 @@ public class Movement_for_planer : MonoBehaviour
             DeathScreen.SetActive(true);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Coin"))
+        { 
+            uiAnimator.Play("Increase the max speed");
+            maxSpeed += 5;
+        }
+
+    }
     private IEnumerator TimerForIVbonus()
     {
         yield return new WaitForSeconds(15f);

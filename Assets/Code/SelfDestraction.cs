@@ -7,7 +7,7 @@ public class SelfDestraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Destroy(gameObject, 50f);
+        Destroy(gameObject, 50f);
     }
 
     // Update is called once per frame

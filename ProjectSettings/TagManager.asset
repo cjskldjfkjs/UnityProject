@@ -15,6 +15,7 @@ TagManager:
   - AirZone
   - TorbulenceZone
   - Asteroid
+  - Coin
   layers:
   - Default
   - TransparentFX
