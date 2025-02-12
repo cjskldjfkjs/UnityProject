@@ -34,7 +34,7 @@ public class Tablet_Input : MonoBehaviour
     private void OnMouseDown()
     {
         gameObject.transform.SetParent(Tablet.transform);
-        animator.SetBool("IsButtonPressed", true);
+        //animator.SetBool("IsButtonPressed", true);
         Tablet.GetComponent<Rigidbody>().AddForce(-transform.forward * 20, ForceMode.Impulse);
         Tablet.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(1, 10),
         Random.Range(10, 50), Random.Range(10, 20)), ForceMode.Impulse);

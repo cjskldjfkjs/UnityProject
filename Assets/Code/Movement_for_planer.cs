@@ -14,13 +14,18 @@ public class Movement_for_planer : MonoBehaviour
     private Rigidbody rigidbody;
     public bool isWindFlow, isDelay, Invincible = false, lazerHit = false;
     public Image Boost_Image;
-    public GameObject Menu, DeathScreen;
+    public GameObject Button, DeathScreen;
     public ReviveAfterAd reviveAfterAd;
     public int addCounter;
     public GameObject Engines, Barier;
     public Material Shield, PreviousMaterial;
     private Distance_traveld_indicator distance_Traveld_Indicator;
     public Animator uiAnimator;
+
+    [Header("DeathScreen")]
+
+    public GameObject TabletModel_DeathScreen;
+    public GameObject Button_DeathScreen;
     void Start()
     {
         distance_Traveld_Indicator = gameObject.GetComponent<Distance_traveld_indicator>();
@@ -31,7 +36,7 @@ public class Movement_for_planer : MonoBehaviour
     }
     public void BeginTheJournej()
     {
-        Menu.gameObject.SetActive(false);
+        Button.gameObject.GetComponent<Animator>().enabled = false;
         StartCoroutine(CameraRotation());
         rigidbody.constraints = RigidbodyConstraints.None;
         rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
@@ -264,8 +269,7 @@ public class Movement_for_planer : MonoBehaviour
             if (rigidbody.velocity.z < 250f && !Invincible)
             {
                 lazerHit = true;
-                rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-                DeathScreen.SetActive(true);
+                GameOver();
             }
         }
 
@@ -282,9 +286,14 @@ public class Movement_for_planer : MonoBehaviour
         if (other.gameObject.CompareTag("Lazer") && !Invincible)
         {
             lazerHit = true;
-            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-            DeathScreen.SetActive(true);
+            GameOver();
         }
+    }
+
+    private void GameOver()
+    {
+        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        TabletModel_DeathScreen.gameObject.GetComponent<Animator>().SetTrigger("Hit");
     }
 
     private void OnCollisionEnter(Collision collision)
