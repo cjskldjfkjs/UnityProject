@@ -26,6 +26,7 @@ public class Movement_for_planer : MonoBehaviour
 
     public GameObject TabletModel_DeathScreen;
     public GameObject Button_DeathScreen;
+    public GameObject Revive_Button;
     void Start()
     {
         distance_Traveld_Indicator = gameObject.GetComponent<Distance_traveld_indicator>();
@@ -114,6 +115,11 @@ public class Movement_for_planer : MonoBehaviour
         RotationByKeyboard();
 
 
+    }
+
+    public void ReviveButtonPressed()
+    {
+        Revive_Button.transform.SetParent(null);
     }
 
     public void Respawn()
@@ -294,6 +300,7 @@ public class Movement_for_planer : MonoBehaviour
     {
         rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         TabletModel_DeathScreen.gameObject.GetComponent<Animator>().SetTrigger("Hit");
+        Camera.main.GetComponent<Animator>().SetTrigger("DeadCam");
     }
 
     private void OnCollisionEnter(Collision collision)

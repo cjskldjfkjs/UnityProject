@@ -5318,7 +5318,7 @@ GameObject:
   - component: {fileID: 359822858}
   - component: {fileID: 359822857}
   - component: {fileID: 359822856}
-  - component: {fileID: 359822855}
+  - component: {fileID: 359822859}
   m_Layer: 0
   m_Name: Button Respawn
   m_TagString: Untagged
@@ -5339,26 +5339,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1170644195}
+  - {fileID: 648201678}
   m_Father: {fileID: 1902144112}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &359822855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359822853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c90db2faa83ad4b8f58261cb646a6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  HitPoint: {fileID: 0}
-  Tablet: {fileID: 1832778858}
-  animator: {fileID: 2136673297}
-  Player: {fileID: 919132149210912508}
 --- !u!65 &359822856
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5422,6 +5406,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359822853}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &359822859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359822853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5af9bfa1978c14587c50d8c88394a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 919132149210912509}
 --- !u!1 &397845629
 GameObject:
   m_ObjectHideFlags: 0
@@ -20446,17 +20443,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648201677}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.047291044}
-  m_LocalScale: {x: 0.021965146, y: 0.020403534, z: 0.40769142}
+  m_LocalPosition: {x: 0, y: 0, z: -0.056120425}
+  m_LocalScale: {x: 3.2258055, y: 10, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2079763153}
-  m_Father: {fileID: 1415833728}
-  m_RootOrder: 0
+  m_Father: {fileID: 359822854}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00087860593, y: -0.007027899}
+  m_AnchoredPosition: {x: 0.008602159, y: -3.988876}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &648201679
@@ -47078,8 +47075,7 @@ Transform:
   m_LocalPosition: {x: 0.040000003, y: 0.34444514, z: 0}
   m_LocalScale: {x: 45.526672, y: 49.011116, z: 2.4528358}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 648201678}
+  m_Children: []
   m_Father: {fileID: 1902144112}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62880,9 +62876,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1902144112}
   - component: {fileID: 1902144111}
-  - component: {fileID: 1902144110}
   - component: {fileID: 1902144109}
   - component: {fileID: 1902144113}
+  - component: {fileID: 1902144114}
   m_Layer: 0
   m_Name: Tablet DeathScreen
   m_TagString: Untagged
@@ -62906,19 +62902,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1902144110
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902144108}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.96263015, z: 1}
-  m_Center: {x: 0, y: 0.38131514, z: 0}
 --- !u!23 &1902144111
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62999,6 +62982,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1902144114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902144108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352bf61d98be7794cb67dd727e36a5e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Deathscreen: {fileID: 0}
+  Revive_Button: {fileID: 359822853}
+  player: {fileID: 919132149210912508}
 --- !u!1 &1907394982
 GameObject:
   m_ObjectHideFlags: 0
