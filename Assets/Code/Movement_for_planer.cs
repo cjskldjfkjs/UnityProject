@@ -107,7 +107,7 @@ public class Movement_for_planer : MonoBehaviour
         }
 
         Rotational_point.transform.rotation = Quaternion.Euler(Rotational_point.transform.rotation.x,
-            Rotational_point.transform.rotation.y, rigidbody.velocity.z / -5 + Rotational_point.transform.rotation.x);
+            Rotational_point.transform.rotation.y, -rigidbody.velocity.z / 6 + Rotational_point.transform.rotation.z);
     }
     private void Update()
     {
@@ -134,6 +134,7 @@ public class Movement_for_planer : MonoBehaviour
             DeathScreen.SetActive(false);
             reviveAfterAd.addFinished = false;
             gameObject.GetComponent<Collider>().isTrigger = false;
+            Invincible = true;
             Engines.GetComponent<MeshRenderer>().materials[0] = Shield;
             Barier.SetActive(true);
 
@@ -151,28 +152,28 @@ public class Movement_for_planer : MonoBehaviour
     }
     private void MovmentByKeyboard()
     {
-        if (Input.GetKey(KeyCode.A) && !isWindFlow)
+        if (Input.GetKey(KeyCode.A) && !isWindFlow && !lazerHit)
         {
             gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, new Vector3(
-                LeftPoint.position.x, transform.position.y, transform.position.z), 30 * Time.deltaTime);
+                LeftPoint.position.x, transform.position.y, transform.position.z), 2 * Time.deltaTime);
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
-                Quaternion.Euler(0, 0, gameObject.transform.rotation.z - 20), 20 * Time.deltaTime);
+                Quaternion.Euler(0, 0, gameObject.transform.rotation.z - 20), 2 * Time.deltaTime);
             //gameObject.transform.Rotate(new Vector3(0, -3, 0));
             //MoveLeft++;
         }
-        else if (Input.GetKey(KeyCode.D) && !isWindFlow)
+        else if (Input.GetKey(KeyCode.D) && !isWindFlow && !lazerHit)
         {
             gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, new Vector3(
-                RightPoint.position.x, transform.position.y, transform.position.z), 30 * Time.deltaTime);
+                RightPoint.position.x, transform.position.y, transform.position.z), 2 * Time.deltaTime);
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
-                Quaternion.Euler(0, 0, gameObject.transform.rotation.z + 20), 20 * Time.deltaTime);
+                Quaternion.Euler(0, 0, gameObject.transform.rotation.z + 20), 2 * Time.deltaTime);
             //gameObject.transform.Rotate(new Vector3(0, -3, 0));
             //MoveLeft++;
         }
-        else
+        else if(!lazerHit)
         {
             gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, new Vector3(
-                 CentrePoint.position.x, transform.position.y, transform.position.z), 30 * Time.deltaTime);
+                 CentrePoint.position.x, transform.position.y, transform.position.z), 10 * Time.deltaTime);
             //gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
             //    Quaternion.Euler(0, 0, transform.rotation.z), 20 * Time.deltaTime);
         }
@@ -180,16 +181,16 @@ public class Movement_for_planer : MonoBehaviour
     }
     private void RotationByKeyboard()
     {
-        if (Input.GetKeyDown(KeyCode.S) && accumulativeForce == 1 && !isWindFlow)
+        if (Input.GetKeyDown(KeyCode.S) && accumulativeForce == 1 && !isWindFlow && !lazerHit)
         {
             rigidbody.AddForce(transform.forward * 600, ForceMode.Impulse);
             rigidbody.AddForce(transform.up * 400, ForceMode.Impulse);
             accumulativeForce = 0.5f;
         }
-        if (Input.GetKey(KeyCode.S) && !isWindFlow)
+        if (Input.GetKey(KeyCode.S) && !isWindFlow && !lazerHit)
         {
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
-                Quaternion.Euler(gameObject.transform.rotation.x - 20, 0, 0), 20 * Time.deltaTime);
+                Quaternion.Euler(gameObject.transform.rotation.x - 20, 0, 0), 2 * Time.deltaTime);
 
             if (accumulativeForce > 0)
             {
@@ -200,10 +201,10 @@ public class Movement_for_planer : MonoBehaviour
             }
 
         }
-        else if (Input.GetKey(KeyCode.W) && !isWindFlow)
+        else if (Input.GetKey(KeyCode.W) && !isWindFlow && !lazerHit)
         {
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
-                Quaternion.Euler(gameObject.transform.rotation.x + 20, 0, 0), 20 * Time.deltaTime);
+                Quaternion.Euler(gameObject.transform.rotation.x + 20, 0, 0), 2 * Time.deltaTime);
             forceZ += 0.2f * Time.deltaTime;
             if (accumulativeForce < 1)
                 accumulativeForce += 0.5f * Time.deltaTime;
@@ -213,7 +214,7 @@ public class Movement_for_planer : MonoBehaviour
         else
         {
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
-                Quaternion.Euler(0, 0, transform.rotation.z), 20 * Time.deltaTime);
+                Quaternion.Euler(0, 0, transform.rotation.z), 2 * Time.deltaTime);
             if (accumulativeForce > 0)
             {
                 accumulativeForce -= 0.3f * Time.deltaTime;
@@ -259,12 +260,13 @@ public class Movement_for_planer : MonoBehaviour
             StartCoroutine(TimeBeforeInStreamMode());
             rigidbody.useGravity = false;
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
-                Quaternion.Euler(0, 0, 0), 20 * Time.deltaTime);
+                Quaternion.Euler(0, 0, 0), 2 * Time.deltaTime);
         }
         else if (!lazerHit)
         {
             rigidbody.constraints = RigidbodyConstraints.None;
             rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            gameObject.GetComponent<Collider>().isTrigger = false;
         }
         rigidbody.useGravity = true;
     }
@@ -318,13 +320,15 @@ public class Movement_for_planer : MonoBehaviour
         Invincible = false;
         Engines.GetComponent<MeshRenderer>().materials[0] = PreviousMaterial;
         Barier.SetActive(false);
+        gameObject.GetComponent<Collider>().isTrigger = false;
     }
     private IEnumerator ReviveBonus()
     {
         yield return new WaitForSeconds(10f);
-        gameObject.GetComponent<Collider>().isTrigger = true;
+        gameObject.GetComponent<Collider>().isTrigger = false;
         Engines.GetComponent<MeshRenderer>().materials[0] = PreviousMaterial;
         Barier.SetActive(false);
+        Invincible = false;
     }
     private IEnumerator TimeBeforeInStreamMode()
     {
