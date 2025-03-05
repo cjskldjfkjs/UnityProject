@@ -26,10 +26,10 @@ public class AsteroidModule : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         randomBonus = Random.Range(0, 2);
-        if(collision.gameObject.tag == playerTag && !player.GetComponent<Movement_for_planer>().lazerHit && 
+        if(other.gameObject.tag == playerTag && !player.GetComponent<Movement_for_planer>().lazerHit && 
             !player.GetComponent<Movement_for_planer>().Invincible)
         { 
             Instantiate(asteroidBoomEfect, gameObject.transform.position, Quaternion.identity);

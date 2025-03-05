@@ -27,6 +27,7 @@ public class DeathscreenInput_Revive : MonoBehaviour
     public void DeathScreenHide()
     {
         Revive_Button.transform.SetParent(Deathscreen.transform);
+        Revive_Button.GetComponent<ReviveButtonPressed>().ResetPosition();
     }
 
 }

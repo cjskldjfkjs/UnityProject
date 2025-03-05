@@ -61,6 +61,7 @@ public class Movement_for_planer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Debug.Log(rigidbody.velocity.z);
         maxSpeedBreaker = distance_Traveld_Indicator.maxSpeedBreaker;
         Boost_Image.fillAmount = boost;
         rigidbody.AddForce(transform.up * forceY);
@@ -274,11 +275,12 @@ public class Movement_for_planer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Asteroid"))
         {
-            if (rigidbody.velocity.z < 250f && !Invincible)
+            if (rigidbody.velocity.z < maxSpeed && !Invincible)
             {
                 lazerHit = true;
                 GameOver();
             }
+            Debug.Log("HIT");
         }
 
         if (other.gameObject.CompareTag("Dash Bonus"))
