@@ -215,7 +215,7 @@ public class Movement_for_planer : MonoBehaviour
         else
         {
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
-                Quaternion.Euler(0, 0, transform.rotation.z), 2 * Time.deltaTime);
+                Quaternion.Euler(0, 0, transform.rotation.z), 10 * Time.deltaTime);
             if (accumulativeForce > 0)
             {
                 accumulativeForce -= 0.3f * Time.deltaTime;
@@ -275,7 +275,7 @@ public class Movement_for_planer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Asteroid"))
         {
-            if (rigidbody.velocity.z < maxSpeed && !Invincible)
+            if (rigidbody.velocity.z >= maxSpeed && !Invincible)
             {
                 lazerHit = true;
                 GameOver();
