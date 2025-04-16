@@ -30,7 +30,8 @@ public class AsteroidModule : MonoBehaviour
     {
         randomBonus = Random.Range(0, 2);
         if(other.gameObject.tag == playerTag && !player.GetComponent<Movement_for_planer>().lazerHit && 
-            !player.GetComponent<Movement_for_planer>().Invincible)
+            !player.GetComponent<Movement_for_planer>().Invincible && 
+            player.GetComponent<Rigidbody>().velocity.z <= player.GetComponent<Movement_for_planer>().maxSpeed)
         { 
             Instantiate(asteroidBoomEfect, gameObject.transform.position, Quaternion.identity);
             Instantiate(Bonuses[randomBonus], gameObject.transform.position, Quaternion.identity); 

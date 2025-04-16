@@ -19,15 +19,22 @@ public class ReviveButtonPressed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(player_code.adCounter>=1)
+            gameObject.SetActive(false);
     }
 
     private void OnMouseDown()
     {
-        player_code.TabletModel_DeathScreen.gameObject.GetComponent<Animator>().SetTrigger("Revive");
-        thePlayer.GetComponent<ReviveAfterAd>().AdForRevive();
-        //player.Respawn();
-        
+        if (gameObject.GetComponent<AdIsAppliable>() != null)
+        {
+            player_code.TabletModel_DeathScreen.gameObject.GetComponent<Animator>().SetTrigger("Revive");
+            thePlayer.GetComponent<ReviveAfterAd>().AdForRevive();
+            //player.Respawn();
+        }
+
+        else
+            player_code.Reset();
+
     }
 
     public void ResetPosition()

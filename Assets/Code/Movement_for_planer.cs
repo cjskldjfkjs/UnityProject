@@ -16,7 +16,7 @@ public class Movement_for_planer : MonoBehaviour
     public Image Boost_Image;
     public GameObject Button, DeathScreen;
     public ReviveAfterAd reviveAfterAd;
-    public int addCounter;
+    public int adCounter;
     public GameObject Engines, Barier;
     public Material Shield, PreviousMaterial;
     private Distance_traveld_indicator distance_Traveld_Indicator;
@@ -125,9 +125,9 @@ public class Movement_for_planer : MonoBehaviour
 
     public void Respawn()
     {
-        if (/*gameObject.GetComponent<ReviveAfterAd>().addFinished &&*/ addCounter < 1)
+        if (/*gameObject.GetComponent<ReviveAfterAd>().addFinished &&*/ adCounter < 1)
         {
-            addCounter++;
+            adCounter++;
             StartCoroutine(ReviveBonus());
             lazerHit = false;
             rigidbody.constraints = RigidbodyConstraints.None;
@@ -273,13 +273,10 @@ public class Movement_for_planer : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Asteroid"))
+        if (other.gameObject.CompareTag("Asteroid") && rigidbody.velocity.z <= maxSpeed - 20 && !Invincible)
         {
-            if (rigidbody.velocity.z >= maxSpeed && !Invincible)
-            {
-                lazerHit = true;
-                GameOver();
-            }
+            lazerHit = true;
+            GameOver();
             Debug.Log("HIT");
         }
 
