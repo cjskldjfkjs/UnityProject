@@ -273,8 +273,9 @@ public class Movement_for_planer : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Asteroid") && rigidbody.velocity.z <= maxSpeed - 20 && !Invincible)
+        if (other.gameObject.CompareTag("Asteroid") && rigidbody.velocity.z <= maxSpeed - 50 && !Invincible)
         {
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             lazerHit = true;
             GameOver();
             Debug.Log("HIT");

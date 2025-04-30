@@ -5357,7 +5357,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Respawn(AD)
+  m_text: Reset
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -137392,7 +137392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7914942018087914087, guid: 7b1f9edb62b93504fa016faf99971c4b, type: 3}
       propertyPath: field of view
-      value: 70
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7914942018087914087, guid: 7b1f9edb62b93504fa016faf99971c4b, type: 3}
       propertyPath: far clip plane
