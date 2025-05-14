@@ -252,24 +252,23 @@ public class Movement_for_planer : MonoBehaviour
 
 
 
-        if (other.gameObject.CompareTag("Wind"))
+        if (other.gameObject.CompareTag("Wind") && !lazerHit)
         {
             isWindFlow = true;
             rigidbody.AddForce(transform.forward * 100, ForceMode.Force);
             rigidbody.AddForce(transform.up * 70, ForceMode.Force);
             rigidbody.AddForce(-transform.up * 45, ForceMode.Force);
             StartCoroutine(TimeBeforeInStreamMode());
-            rigidbody.useGravity = false;
             gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
                 Quaternion.Euler(0, 0, 0), 2 * Time.deltaTime);
         }
-        else if (!lazerHit)
-        {
-            rigidbody.constraints = RigidbodyConstraints.None;
-            rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-            gameObject.GetComponent<Collider>().isTrigger = false;
-        }
-        rigidbody.useGravity = true;
+        //else if (!lazerHit)
+        //{
+        //    rigidbody.constraints = RigidbodyConstraints.None;
+        //    rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        //    gameObject.GetComponent<Collider>().isTrigger = false;
+        //}
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -339,7 +338,11 @@ public class Movement_for_planer : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Wind"))
+        { 
             isWindFlow = false;
+            rigidbody.constraints = RigidbodyConstraints.None;
+            rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        }
         if (other.gameObject.CompareTag("Wind") && (rigidbody.velocity.z > 250 || rigidbody.velocity.y > 250))
         {
             rigidbody.velocity = new Vector3(0f, rigidbody.velocity.y, 100f);
