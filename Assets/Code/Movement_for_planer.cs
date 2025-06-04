@@ -150,6 +150,7 @@ public class Movement_for_planer : MonoBehaviour
     public void Reset()
     {
         SceneManager.LoadScene(0);
+
     }
     private void MovmentByKeyboard()
     {
@@ -232,6 +233,8 @@ public class Movement_for_planer : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
+        if(lazerHit) return;
+
         float randomForce = Random.RandomRange(-100f, 100f);
         if (other.gameObject.CompareTag("TorbulenceZone"))
         {
@@ -252,16 +255,7 @@ public class Movement_for_planer : MonoBehaviour
 
 
 
-        if (other.gameObject.CompareTag("Wind") && !lazerHit)
-        {
-            isWindFlow = true;
-            rigidbody.AddForce(transform.forward * 100, ForceMode.Force);
-            rigidbody.AddForce(transform.up * 70, ForceMode.Force);
-            rigidbody.AddForce(-transform.up * 45, ForceMode.Force);
-            StartCoroutine(TimeBeforeInStreamMode());
-            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
-                Quaternion.Euler(0, 0, 0), 2 * Time.deltaTime);
-        }
+        
         //else if (!lazerHit)
         //{
         //    rigidbody.constraints = RigidbodyConstraints.None;
@@ -295,6 +289,17 @@ public class Movement_for_planer : MonoBehaviour
             lazerHit = true;
             GameOver();
         }
+
+        if (other.gameObject.CompareTag("Wind") && !lazerHit)
+        {
+            isWindFlow = true;
+            rigidbody.AddForce(transform.forward * 100, ForceMode.Force);
+            rigidbody.AddForce(transform.up * 70, ForceMode.Force);
+            rigidbody.AddForce(-transform.up * 45, ForceMode.Force);
+            StartCoroutine(TimeBeforeInStreamMode());
+            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation,
+                Quaternion.Euler(0, 0, 0), 2 * Time.deltaTime);
+        }
     }
 
     private void GameOver()
@@ -302,6 +307,8 @@ public class Movement_for_planer : MonoBehaviour
         rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         TabletModel_DeathScreen.gameObject.GetComponent<Animator>().SetTrigger("Hit");
         Camera.main.GetComponent<Animator>().SetTrigger("DeadCam");
+        if (adCounter >= 1)
+            SceneManager.LoadScene(0);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -331,13 +338,16 @@ public class Movement_for_planer : MonoBehaviour
     }
     private IEnumerator TimeBeforeInStreamMode()
     {
-        yield return new WaitForSeconds(3f);
-        rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+        if(!lazerHit)
+        {
+            yield return new WaitForSeconds(3f);
+            rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Wind"))
+        if (other.gameObject.CompareTag("Wind") && !lazerHit)
         { 
             isWindFlow = false;
             rigidbody.constraints = RigidbodyConstraints.None;
