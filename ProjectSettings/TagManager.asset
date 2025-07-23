@@ -16,6 +16,13 @@ TagManager:
   - TorbulenceZone
   - Asteroid
   - Coin
+  - PressedBoombox
+  - PressedPrevButton
+  - PressedStop
+  - PressedNextButton
+  - PressedPlayButton
+  - PressedSettingsButton
+  - PressedExitButton
   layers:
   - Default
   - TransparentFX
