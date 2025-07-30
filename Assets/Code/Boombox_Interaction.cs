@@ -6,10 +6,15 @@ public class Boombox_Interaction : MonoBehaviour
 {
     [SerializeField]
     private Animator boomBoxAnimator;
+    [SerializeField]
+    private Camera camera;
+    [SerializeField]
+    private GameObject boomboxCore;
+    private Collider childBoxcolider;
     RaycastHit hit;
     void Start()
     {
-        
+        childBoxcolider = boomboxCore.GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -17,7 +22,7 @@ public class Boombox_Interaction : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         { 
-            Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out hit))
             { 
                 switch(hit.collider.gameObject.tag)
@@ -54,32 +59,68 @@ public class Boombox_Interaction : MonoBehaviour
         }
     }
 
-    private void BoomboxPressed()
-    { 
-        boomBoxAnimator.SetBool("IsPressed", true);
-    }
-    private void PressedPrevButton()
+    public void SelectedIdle()
     {
-        boomBoxAnimator.SetBool("IsPrevPressed", true);
     }
-    private void PressedStop()
+    public void BoomboxPressed()
     {
-        boomBoxAnimator.SetBool("IsStopPressed", true);
+        if (boomBoxAnimator.GetBool("IsExitPressed"))
+        { 
+            boomBoxAnimator.SetBool("IsPressed", false);
+            boomBoxAnimator.SetBool("IsExitPressed", false);
+        }
+
+        else if (!boomBoxAnimator.GetBool("IsPressed"))
+            boomBoxAnimator.SetBool("IsPressed", true);
+
+        else
+        {
+            childBoxcolider.enabled = false;
+            boomBoxAnimator.SetBool("IsSelected", true);
+            boomBoxAnimator.SetBool("IsPressed", false);
+        }
     }
-    private void PressedNextButton()
+    public void PressedPrevButton()
     {
-        boomBoxAnimator.SetBool("IsNextPressed", true);
+        if (!boomBoxAnimator.GetBool("IsPrevPressed"))
+            boomBoxAnimator.SetBool("IsPrevPressed", true);
+        else
+            boomBoxAnimator.SetBool("IsPrevPressed", false);
     }
-    private void PressedPlayButton()
+    public void PressedStop()
     {
-        boomBoxAnimator.SetBool("IsPlayPressed", true);
+        if (!boomBoxAnimator.GetBool("IsStopPressed"))
+            boomBoxAnimator.SetBool("IsStopPressed", true);
+        else
+            boomBoxAnimator.SetBool("IsStopPressed", false);
     }
-    private void PressedSettingsButton()
+    public void PressedNextButton()
     {
-        boomBoxAnimator.SetBool("IsSettingsPressed", true);
+        if (!boomBoxAnimator.GetBool("IsNextPressed"))
+            boomBoxAnimator.SetBool("IsNextPressed", true);
+        else
+            boomBoxAnimator.SetBool("IsNextPressed", false);
     }
-    private void PressedExitButton()
+    public void PressedPlayButton()
     {
-        boomBoxAnimator.SetBool("IsExitPressed", true);
+        if(!boomBoxAnimator.GetBool("IsPlayPressed"))
+            boomBoxAnimator.SetBool("IsPlayPressed", true);
+        else
+            boomBoxAnimator.SetBool("IsPlayPressed", false);
+    }
+    public void PressedSettingsButton()
+    {
+        if (!boomBoxAnimator.GetBool("IsSettingsPressed"))
+            boomBoxAnimator.SetBool("IsSettingsPressed", true);
+        else
+            boomBoxAnimator.SetBool("IsSettingsPressed", false);
+    }
+    public void PressedExitButton()
+    {
+        childBoxcolider.enabled = true;
+        if (!boomBoxAnimator.GetBool("IsExitPressed"))
+            boomBoxAnimator.SetBool("IsExitPressed", true);
+        else
+            boomBoxAnimator.SetBool("IsExitPressed", false);
     }
 }

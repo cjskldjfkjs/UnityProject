@@ -63174,19 +63174,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 7914942018087914087, guid: 7b1f9edb62b93504fa016faf99971c4b, type: 3}
   m_PrefabInstance: {fileID: 7914942018736400148}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1781546495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781546486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9caf6fc020649bc45a048b261386a1d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boomBoxAnimator: {fileID: 5225196148934965598}
 --- !u!1 &1782043661
 GameObject:
   m_ObjectHideFlags: 0
@@ -137361,6 +137348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4884277602773214183}
   - component: {fileID: 5225196148934965598}
+  - component: {fileID: 5225196148934965599}
   m_Layer: 0
   m_Name: BoomBox
   m_TagString: Untagged
@@ -137389,6 +137377,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5225196148934965599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5225196148934965597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9caf6fc020649bc45a048b261386a1d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boomBoxAnimator: {fileID: 5225196148934965598}
+  camera: {fileID: 1781546492}
+  boomboxCore: {fileID: 5750721152658896488}
 --- !u!1 &5234782936572724554
 GameObject:
   m_ObjectHideFlags: 0
@@ -137870,6 +137873,7 @@ GameObject:
   - component: {fileID: 560389941656499683}
   - component: {fileID: 4556395006287060150}
   - component: {fileID: 8011336491645051978}
+  - component: {fileID: 8011336491645051979}
   m_Layer: 0
   m_Name: Cube.004
   m_TagString: PressedPlayButton
@@ -139572,6 +139576,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8011336491645051979
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5887755016983467118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0023873711, y: 0.0023873714, z: 0.0038634886}
+  m_Center: {x: -1.3593876e-18, y: -5.8207647e-11, z: 0.0009529161}
 --- !u!4 &8043604726545186810
 Transform:
   m_ObjectHideFlags: 0
