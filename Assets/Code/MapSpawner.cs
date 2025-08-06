@@ -12,7 +12,7 @@ public class MapSpawner : MonoBehaviour
     public List<GameObject> platformList;
 
     public GameObject[] planes;
-    public GameObject wind_plane, normal_plane, plane0;
+    public GameObject plane0;
     void Start()
     {
 
