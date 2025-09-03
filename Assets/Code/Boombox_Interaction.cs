@@ -5,6 +5,10 @@ using UnityEngine;
 public class Boombox_Interaction : MonoBehaviour
 {
     [SerializeField]
+    private Animator pauseButtonAnimator;
+    private bool isPauseButtonPressed;
+    [Space]
+    [SerializeField]
     private Animator boomBoxAnimator;
     [SerializeField]
     private Camera camera;
@@ -12,6 +16,7 @@ public class Boombox_Interaction : MonoBehaviour
     private GameObject boomboxCore;
     private Collider childBoxcolider;
     RaycastHit hit;
+    
     void Start()
     {
         childBoxcolider = boomboxCore.GetComponent<Collider>();
@@ -123,4 +128,19 @@ public class Boombox_Interaction : MonoBehaviour
         else
             boomBoxAnimator.SetBool("IsExitPressed", false);
     }
+    public void PauseButtonPressed()
+    {
+        if (!isPauseButtonPressed)
+        {
+            pauseButtonAnimator.SetTrigger("PuaseButtonPressed");
+            isPauseButtonPressed = true;
+        }
+
+        else
+        {
+            pauseButtonAnimator.SetTrigger("ExitPauseBatton");
+            isPauseButtonPressed = false;
+        }
+    }
 }
+
