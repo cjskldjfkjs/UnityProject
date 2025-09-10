@@ -45,6 +45,7 @@ public class Movement_for_planer : MonoBehaviour
         rigidbody.AddForce(transform.forward * 10);
         Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Cursor.visible = false;
+        Debug.Log("start");
     }
 
     private IEnumerator CameraRotation()
@@ -61,7 +62,7 @@ public class Movement_for_planer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(rigidbody.velocity.z);
+        //Debug.Log(rigidbody.velocity.z);
         maxSpeedBreaker = distance_Traveld_Indicator.maxSpeedBreaker;
         Boost_Image.fillAmount = boost;
         rigidbody.AddForce(transform.up * forceY);

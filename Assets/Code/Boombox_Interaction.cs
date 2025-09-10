@@ -122,6 +122,9 @@ public class Boombox_Interaction : MonoBehaviour
     }
     public void PressedExitButton()
     {
+        pauseButtonAnimator.SetTrigger("ExitPauseBatton");
+        isPauseButtonPressed = false;
+
         childBoxcolider.enabled = true;
         if (!boomBoxAnimator.GetBool("IsExitPressed"))
             boomBoxAnimator.SetBool("IsExitPressed", true);
@@ -134,12 +137,14 @@ public class Boombox_Interaction : MonoBehaviour
         {
             pauseButtonAnimator.SetTrigger("PuaseButtonPressed");
             isPauseButtonPressed = true;
+            BoomboxPressed();
         }
 
         else
         {
-            pauseButtonAnimator.SetTrigger("ExitPauseBatton");
-            isPauseButtonPressed = false;
+            PressedExitButton();
+            //pauseButtonAnimator.SetTrigger("ExitPauseBatton");
+            //isPauseButtonPressed = false;
         }
     }
 }
