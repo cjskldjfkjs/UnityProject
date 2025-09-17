@@ -16,10 +16,14 @@ public class Boombox_Interaction : MonoBehaviour
     private GameObject boomboxCore;
     private Collider childBoxcolider;
     RaycastHit hit;
+    [Space]
+    public GameObject BackGround;
+    private Animator backgroundAnimator;
     
     void Start()
     {
         childBoxcolider = boomboxCore.GetComponent<Collider>();
+        backgroundAnimator = BackGround.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -76,8 +80,11 @@ public class Boombox_Interaction : MonoBehaviour
         }
 
         else if (!boomBoxAnimator.GetBool("IsPressed"))
+        {
             boomBoxAnimator.SetBool("IsPressed", true);
-
+            backgroundAnimator.SetBool("Game's Paused", true);
+            Time.timeScale = 0;
+        }
         else
         {
             childBoxcolider.enabled = false;
@@ -127,7 +134,11 @@ public class Boombox_Interaction : MonoBehaviour
 
         childBoxcolider.enabled = true;
         if (!boomBoxAnimator.GetBool("IsExitPressed"))
+        { 
             boomBoxAnimator.SetBool("IsExitPressed", true);
+            backgroundAnimator.SetBool("Game's Paused", false);
+            Time.timeScale = 1;
+        }
         else
             boomBoxAnimator.SetBool("IsExitPressed", false);
     }

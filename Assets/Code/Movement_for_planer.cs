@@ -13,6 +13,7 @@ public class Movement_for_planer : MonoBehaviour
     public Transform LeftPoint, CentrePoint, RightPoint;
     private Rigidbody rigidbody;
     public bool isWindFlow, isDelay, Invincible = false, lazerHit = false;
+    public bool isGameStarted = false;
     public Image Boost_Image;
     public GameObject Button, DeathScreen;
     public ReviveAfterAd reviveAfterAd;
@@ -37,7 +38,7 @@ public class Movement_for_planer : MonoBehaviour
     }
     public void BeginTheJournej()
     {
-        Button.gameObject.GetComponent<Animator>().enabled = false;
+        isGameStarted = true;
         StartCoroutine(CameraRotation());
         rigidbody.constraints = RigidbodyConstraints.None;
         rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
